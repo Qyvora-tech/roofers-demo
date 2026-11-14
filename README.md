@@ -1,85 +1,94 @@
-# SLATE & RIDGE ROOFING CO.
-### *Crafted Above. Built Beyond.*
+# RIDGELINE ARCHITECTURAL ROOFING
+### *Architectural Precision Overhead. Engineered for 50-Year Longevity.*
 
-A custom, award-winning, agency-grade ($3,000+) digital experience engineered for a premier American residential roofing company. Designed with architectural visual hierarchy, an interactive pinned scroll-driven roof assembly sequence, and conversion-focused UX.
+An elite, bespoke agency-grade digital experience for a premium American residential roofing firm. Built with custom architectural art direction, Swiss-inspired typographic hierarchy, a 60–120 FPS high-resolution pinned scroll-driven roof assembly interaction, and conversion-focused UX.
 
 ---
 
-## 🌟 Key Highlights & Engineering Features
+## 🏛️ Design System & Creative Direction
 
-### 1. Signature Pinned Scroll-Driven Roof Assembly
-- **Cinematic Experience:** Homeowners witness a real American residential home transition from raw exposed decking to an armor-clad charcoal architectural roofing system as they scroll.
-- **Bi-Directional Scrubbing:** Maps scroll progress to video frames forward and backward with sub-frame linear damping (`requestAnimationFrame` + lerp) for smooth 60fps interaction.
-- **Synchronized Overlays:**
-  - **0%–18% (Initial):** Exposed decking, "A Better Roof. A Stronger Home."
-  - **18%–45% (Foundation):** Synthetic underlayment & ice/water barriers descend.
-  - **45%–75% (Assembly):** Class 4 architectural shingles in precision staggered courses.
-  - **75%–88% (Finishing):** Step flashing, copper valleys, and high-flow ridge ventilation.
-  - **88%–100% (Reveal):** Completed architectural system, "Built for What Matters Most."
-- **Non-Blocking UX:** Includes instant milestone navigation buttons (Decking, Underlayment, Shingles, Flashing, Complete), "Jump to Finished Roof", and direct CTA actions so visitors are never trapped by animations.
+- **Limestone (`#EAE7DF`):** Primary architectural background surface.
+- **Carbon (`#252B2C`):** High-contrast editorial dark surface for hero, footer, and specification panels.
+- **Oxidized Copper (`#A66E4E`):** Restrained luxury metal accents, active progress badges, and CTA highlights.
+- **Weathered Stone (`#AAA99C`):** Subtle architectural indicators and technical metadata.
+- **Chalk (`#F8F7F3`):** High-contrast crisp card surfaces.
+- **Typography:** Instrument Serif (Editorial headings), Manrope (Body & navigation), IBM Plex Mono (Technical specifications & metadata).
 
-### 2. Architectural Design System
-- **Midnight Slate (`#172328`):** Dominant dark surface for hero, footer, and editorial callouts.
-- **Aged Copper (`#C29369`):** Restrained luxury accent for primary CTAs, active highlights, and badges.
-- **Warm Ivory (`#F4F0E8`):** Approachable, readable main editorial background.
-- **Muted Sage (`#8B9995`):** Subtle architectural accents, metadata, and borders.
-- **Deep Graphite (`#343F43`):** High-contrast body typography.
-- **Pure White (`#FFFFFF`):** High-contrast card surfaces and interactive calculators.
-- **Typography:** Plus Jakarta Sans & Manrope (Display/Headings), Inter & DM Sans (Body), Playfair Display (Restrained editorial accents).
+---
 
-### 3. Interactive Components & Conversion Architecture
-- **Interactive 7-Layer Roofing Anatomy:** Clickable cross-section breakdown inspecting Decking, Drip Edge, Ice & Water Shield, Synthetic Underlayment, Starter Strip, Architectural Shingles, and Ridge Cap Ventilation.
-- **Interactive Turnkey Cost & Financing Calculator:** Real-time square footage slider, roof pitch selector, and shingle tier comparisons with Texas insurance discounts and monthly payment projections.
-- **Filterable Project Portfolio & Before/After Slider:** High-resolution architectural photography with interactive split-slider comparison.
-- **The Slate & Ridge Standard (4 Pillars):** In-house certified artisans, 80+ digital photo checkpoints, white-glove property shielding (Catch-All nets & magnetic sweeps), and GAF Golden Pledge warranties.
-- **5-Step Homeowner Journey:** Inspection & 4K Drone Scan → Itemized Proposal & 3D Visualizer → Property Shielding & Tear-Off → Master Installation → Magnetic Clean-up & Warranty.
-- **DFW Service Areas & Interactive ZIP Checker:** Instant local dispatch lookup across Dallas, Plano, Frisco, Southlake, McKinney, Allen, and Fort Worth.
-- **Verified Homeowner Testimonials Carousel:** Authentic stories with finished home photography and neighborhood credentials.
-- **Comprehensive FAQ Accordion:** Straightforward answers on insurance claims, shingle longevity, storm damage detection, and warranties.
-- **Global Estimate Modal & Lead Capture:** Fast, friction-free booking with confetti celebrations and immediate dispatch response commitments.
+## 🌟 Key Architectural Features
+
+### 1. Signature Pinned Canvas Roof Assembly (60–120 FPS)
+- High-performance HTML5 `<canvas>` rendering 94 pre-decoded WebP frames of an authentic residential roof build sequence.
+- Decoupled frame interpolation (`diff * 0.22`) with Lenis inertial smooth momentum scrolling.
+- ~60–70% dark carbon contrast overlay with left-side architectural gradient for readable typography over bright substrate decking.
+- Pure white bold typography (`text-white`) with high-depth drop shadows (`drop-shadow-[0_4px_20px_rgba(0,0,0,0.85)]`) and oxidized copper accents.
+- Cinematic blur-dissolve phase crossfades powered by Framer Motion (`<AnimatePresence mode="wait">`).
+- Sleek hairline progress track and real-time assembly percentage indicator.
+
+### 2. Anatomy of Craft (Interactive Technical Pins)
+- High-resolution photographic spread with interactive pulsating pinpoints (Aged Copper Valley, 6-Nail Fastener Schedule, 5/8" CDX Substrate, Continuous Ridge Exhaust).
+- Dynamic specification ribbon with smooth animated transitions.
+
+### 3. Bespoke Capabilities & Deliverables
+- 1 dominant photographic feature + 4 text-led service entries (Roof Replacement, Precision Repair, Storm Restoration, Forensic Inspection).
+- Fluid image scale crossfades and deliverable checklist animations.
+
+### 4. Material Selection Studio
+- Interactive tabs for Class 4 Impact Architectural Shingles, Standing Seam Metal, Hand-Split Western Red Cedar, and DaVinci Synthetic Slate.
+- Detailed verified attributes matrix with physical sample kit ordering.
+
+### 5. Selected Work & Interactive Before/After Slider
+- Asymmetric portfolio grid of genuine Dallas-Fort Worth estates.
+- Interactive touch- and drag-enabled split Before/After comparison modal with spring dynamics.
+
+### 6. Working Philosophy & Credentials
+- W2 certified artisans, 80+ photographic checkpoints, magnetic property shielding, GAF Master Elite® (#ME-98214) license verification.
+
+### 7. Regional DFW Jurisdictions & ZIP Lookup
+- Live service radius checking across Dallas, Plano, Frisco, Southlake, McKinney, Allen, and Fort Worth.
+
+### 8. High-Contrast Estimate Intake & Modal
+- Spring-animated booking modal with celebration particles and rapid dispatch commitments.
 
 ---
 
 ## 🛠 Tech Stack
 
 - **Framework:** React 19 + Vite 6
+- **Smooth Inertial Scrolling:** Lenis (`@studio-freight/lenis` / `lenis`)
+- **Animation & Transitions:** Framer Motion (`framer-motion`), Canvas Confetti
 - **Styling:** Tailwind CSS + PostCSS + Autoprefixer
-- **Animations:** HTML5 Video Scrubbing with `requestAnimationFrame` lerping, Framer Motion, GSAP
 - **Icons:** Lucide React
-- **Delight & Micro-interactions:** Canvas Confetti
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Running Locally
 
-### Prerequisites
-- Node.js (v18+)
-- npm
-
-### Installation
 ```bash
-# Clone the repository
-git clone https://github.com/Qyvora-tech/roofers-demo.git
-
-# Navigate to project directory
-cd roofers-demo
-
 # Install dependencies
 npm install
 
-# Start local development server
+# Start development server
 npm run dev
 ```
 
-Visit `http://localhost:3000` to view the website.
-
-### Production Build
-```bash
-npm run build
-npm run preview
-```
+Visit: `http://localhost:3000`
 
 ---
 
-## 📄 License & Attribution
-Designed and built for Slate & Ridge Roofing Co. Demonstration brand assets and media included.
+## 📦 Production Build & Deployment
+
+```bash
+# Build optimized production bundle
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+### Vercel / Netlify Deployment
+This project includes `vercel.json` configured for Vite SPA routing:
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+- **Framework:** `vite`
