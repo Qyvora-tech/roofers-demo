@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  X, 
-  CheckCircle2, 
-  ArrowRight, 
-  Phone, 
-  ShieldCheck, 
-  Sparkles, 
-  Calendar,
-  Clock
-} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, CheckCircle2, ArrowRight, ShieldCheck } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function EstimateModal({ isOpen, onClose, initialService = '' }) {
@@ -17,21 +9,19 @@ export default function EstimateModal({ isOpen, onClose, initialService = '' }) 
     phone: '',
     email: '',
     address: '',
-    service: initialService || 'Complete Roof Replacement',
-    preferredTime: 'Morning (8 AM – 12 PM)',
-    urgency: 'Standard (Next 1–3 Days)'
+    service: initialService || 'Roof Replacement (Full System)',
+    preferredWindow: 'Morning (8 AM – 12 PM)',
+    urgency: 'Standard Scheduling (Next 1–3 Days)'
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     if (initialService) {
       setFormData(prev => ({ ...prev, service: initialService }));
     }
   }, [initialService]);
-
-  if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,76 +34,88 @@ export default function EstimateModal({ isOpen, onClose, initialService = '' }) 
           particleCount: 80,
           spread: 60,
           origin: { y: 0.5 },
-          colors: ['#C29369', '#E7CEBC', '#8B9995', '#FFFFFF']
+          colors: ['#A66E4E', '#DEBAA3', '#252B2C', '#F8F7F3']
         });
       } catch (err) {}
-    }, 600);
+    }, 500);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div 
-        className="bg-slate-900 border border-white/15 rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl relative text-white max-h-[95vh] flex flex-col"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-carbon-950/85 backdrop-blur-md"
+          onClick={onClose}
+        >
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 16 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="bg-chalk border border-hairline max-w-xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
         {/* Modal Top Bar */}
-        <div className="p-6 border-b border-white/10 flex items-center justify-between bg-slate-950">
+        <div className="p-6 bg-limestone-200 border-b border-hairline flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-copper-500/20 border border-copper-500/30 flex items-center justify-center text-copper-400">
-              <ShieldCheck className="w-5 h-5" />
+            <div className="w-8 h-8 border border-copper-500 bg-carbon-900 text-copper-400 flex items-center justify-center">
+              <ShieldCheck className="w-4 h-4" />
             </div>
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-copper-400 font-bold">
-                Slate & Ridge Roofing Co.
+              <span className="text-[10px] font-mono uppercase tracking-widest text-copper-600 font-bold block">
+                RIDGELINE ARCHITECTURAL
               </span>
-              <h3 className="font-display font-bold text-lg text-white">
-                Book Free On-Site Inspection
+              <h3 className="font-sans font-bold text-lg text-carbon-900">
+                Book Architectural Inspection
               </h3>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-sage-300 hover:text-white transition-colors"
+            className="w-8 h-8 border border-carbon-800 flex items-center justify-center text-carbon-900 hover:bg-carbon-900 hover:text-chalk transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Modal Content */}
-        <div className="p-6 sm:p-8 overflow-y-auto">
+        {/* Modal Body */}
+        <div className="p-6 sm:p-8">
           {isSubmitted ? (
-            <div className="py-8 text-center space-y-5 animate-in fade-in duration-200">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-400 mx-auto">
-                <CheckCircle2 className="w-8 h-8" />
+            <div className="py-8 text-center space-y-4 animate-in fade-in duration-200">
+              <div className="w-14 h-14 rounded-full bg-copper-100 border border-copper-500 text-copper-600 flex items-center justify-center mx-auto">
+                <CheckCircle2 className="w-7 h-7" />
               </div>
 
               <div className="space-y-1">
-                <h4 className="font-display font-bold text-2xl text-white">
-                  Inspection Confirmed!
+                <h4 className="font-sans font-bold text-2xl text-carbon-900">
+                  Inspection Confirmed
                 </h4>
-                <p className="text-xs sm:text-sm text-sage-200 max-w-sm mx-auto">
-                  Thank you, <strong className="text-white">{formData.name}</strong>. Our dispatch team is reviewing your address and will call you at <strong className="text-copper-300">{formData.phone}</strong> to confirm your inspector's arrival window.
+                <p className="text-xs text-carbon-600 max-w-sm mx-auto leading-relaxed">
+                  Thank you, <strong className="text-carbon-900">{formData.name}</strong>. Our regional field director will call you at <strong className="text-copper-600">{formData.phone}</strong> shortly to confirm access coordinates.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-950 border border-white/5 text-xs text-sage-300 max-w-sm mx-auto">
-                <div>Preferred Window: <strong className="text-white">{formData.preferredTime}</strong></div>
-                <div className="mt-1 text-emerald-400">Drone flight inspection included at zero charge</div>
+              <div className="p-3 bg-limestone-100 border border-hairline text-xs font-mono text-carbon-700 max-w-xs mx-auto">
+                <div>Preferred Window: <strong className="text-carbon-900">{formData.preferredWindow}</strong></div>
+                <div className="mt-1 text-copper-600">4K Drone Flight Included at Zero Fee</div>
               </div>
 
               <button
                 onClick={onClose}
-                className="px-6 py-2.5 rounded-xl bg-copper-500 hover:bg-copper-400 text-slate-950 font-display font-bold text-xs shadow-md transition-colors"
+                className="px-6 py-2.5 bg-carbon-900 hover:bg-copper-500 hover:text-carbon-950 text-chalk text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
               >
-                Close & Return to Site
+                Return to Site
               </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono uppercase text-sage-300 mb-1 font-medium">
+                  <label className="block text-[10px] font-mono uppercase text-carbon-800 mb-1">
                     Your Name *
                   </label>
                   <input
@@ -122,12 +124,12 @@ export default function EstimateModal({ isOpen, onClose, initialService = '' }) 
                     placeholder="Jane Doe"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 focus:border-copper-500 text-xs text-white placeholder:text-slate-600 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-limestone-50 border border-hairline text-xs text-carbon-900 focus:outline-none focus:border-copper-500 placeholder:text-stone-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono uppercase text-sage-300 mb-1 font-medium">
+                  <label className="block text-[10px] font-mono uppercase text-carbon-800 mb-1">
                     Phone Number *
                   </label>
                   <input
@@ -136,14 +138,14 @@ export default function EstimateModal({ isOpen, onClose, initialService = '' }) 
                     placeholder="(214) 000-0000"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 focus:border-copper-500 text-xs text-white placeholder:text-slate-600 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-limestone-50 border border-hairline text-xs text-carbon-900 focus:outline-none focus:border-copper-500 placeholder:text-stone-400"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono uppercase text-sage-300 mb-1 font-medium">
+                  <label className="block text-[10px] font-mono uppercase text-carbon-800 mb-1">
                     Email Address *
                   </label>
                   <input
@@ -152,13 +154,13 @@ export default function EstimateModal({ isOpen, onClose, initialService = '' }) 
                     placeholder="jane@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 focus:border-copper-500 text-xs text-white placeholder:text-slate-600 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-limestone-50 border border-hairline text-xs text-carbon-900 focus:outline-none focus:border-copper-500 placeholder:text-stone-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono uppercase text-sage-300 mb-1 font-medium">
-                    Home Address & ZIP *
+                  <label className="block text-[10px] font-mono uppercase text-carbon-800 mb-1">
+                    Property Address & ZIP *
                   </label>
                   <input
                     type="text"
@@ -166,32 +168,32 @@ export default function EstimateModal({ isOpen, onClose, initialService = '' }) 
                     placeholder="Street, City, ZIP"
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 focus:border-copper-500 text-xs text-white placeholder:text-slate-600 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-limestone-50 border border-hairline text-xs text-carbon-900 focus:outline-none focus:border-copper-500 placeholder:text-stone-400"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase text-sage-300 mb-1 font-medium">
+                <label className="block text-[10px] font-mono uppercase text-carbon-800 mb-1">
                   Service Inquired
                 </label>
                 <input
                   type="text"
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 focus:border-copper-500 text-xs text-white focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-limestone-50 border border-hairline text-xs text-carbon-900 focus:outline-none focus:border-copper-500"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono uppercase text-sage-300 mb-1 font-medium">
-                    Preferred Time Window
+                  <label className="block text-[10px] font-mono uppercase text-carbon-800 mb-1">
+                    Preferred Window
                   </label>
                   <select
-                    value={formData.preferredTime}
-                    onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 focus:border-copper-500 text-xs text-white focus:outline-none cursor-pointer"
+                    value={formData.preferredWindow}
+                    onChange={(e) => setFormData({ ...formData, preferredWindow: e.target.value })}
+                    className="w-full px-3.5 py-2.5 bg-limestone-50 border border-hairline text-xs text-carbon-900 focus:outline-none focus:border-copper-500 cursor-pointer"
                   >
                     <option value="Morning (8 AM – 12 PM)">Morning (8 AM – 12 PM)</option>
                     <option value="Afternoon (12 PM – 4 PM)">Afternoon (12 PM – 4 PM)</option>
@@ -201,16 +203,16 @@ export default function EstimateModal({ isOpen, onClose, initialService = '' }) 
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono uppercase text-sage-300 mb-1 font-medium">
+                  <label className="block text-[10px] font-mono uppercase text-carbon-800 mb-1">
                     Urgency
                   </label>
                   <select
                     value={formData.urgency}
                     onChange={(e) => setFormData({ ...formData, urgency: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 focus:border-copper-500 text-xs text-white focus:outline-none cursor-pointer"
+                    className="w-full px-3.5 py-2.5 bg-limestone-50 border border-hairline text-xs text-carbon-900 focus:outline-none focus:border-copper-500 cursor-pointer"
                   >
-                    <option value="Active Emergency / Tarping Needed">Active Emergency / Tarping Needed</option>
-                    <option value="Standard (Next 1–3 Days)">Standard (Next 1–3 Days)</option>
+                    <option value="Standard Scheduling (Next 1–3 Days)">Standard (Next 1–3 Days)</option>
+                    <option value="Emergency Storm Tarping Needed">Emergency Storm Tarping Needed</option>
                     <option value="Planning for Future Project">Planning for Future Project</option>
                   </select>
                 </div>
@@ -220,38 +222,28 @@ export default function EstimateModal({ isOpen, onClose, initialService = '' }) 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 px-6 rounded-xl bg-copper-500 hover:bg-copper-400 text-slate-950 font-display font-bold text-xs tracking-wide shadow-lg hover:shadow-copper-glow transition-all duration-200 flex items-center justify-center gap-2 active:scale-98 disabled:opacity-50"
+                  className="w-full py-3.5 bg-copper-500 hover:bg-copper-400 text-carbon-950 font-sans font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 disabled:opacity-50"
                 >
                   {isSubmitting ? (
-                    <span>Confirming...</span>
+                    <span>Registering Coordinates...</span>
                   ) : (
                     <>
                       <span>Confirm Free Inspection Booking</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 text-carbon-950" />
                     </>
                   )}
                 </button>
               </div>
 
-              <div className="text-center text-[10px] text-sage-400">
+              <div className="text-center text-[10px] font-mono text-stone-500">
                 100% Free • Comprehensive 4K Aerial Drone Flight Included
               </div>
             </form>
           )}
         </div>
-
-        {/* Modal Footer Emergency Callout */}
-        <div className="p-4 bg-slate-950 border-t border-white/10 flex items-center justify-between text-xs text-sage-300">
-          <span className="hidden sm:inline">Prefer to speak directly with an inspector?</span>
-          <a
-            href="tel:2148337663"
-            className="text-copper-400 hover:text-white font-bold flex items-center gap-1.5"
-          >
-            <Phone className="w-3.5 h-3.5" />
-            <span>Call (214) 833-7663</span>
-          </a>
-        </div>
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

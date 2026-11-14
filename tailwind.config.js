@@ -7,61 +7,57 @@ export default {
   theme: {
     extend: {
       colors: {
-        slate: {
-          950: '#0F161A',
-          900: '#172328', // Midnight Slate (Primary Brand Dark)
-          850: '#1F2C32',
-          800: '#27363D',
-          700: '#34454E',
+        limestone: {
+          50: '#F5F3ED',
+          100: '#EFECE4',
+          200: '#EAE7DF', // Primary Editorial Surface
+          300: '#DED9CE',
+          400: '#CFC8BA',
+          500: '#BFB6A4',
+        },
+        carbon: {
+          950: '#141718',
+          900: '#1C2122',
+          800: '#252B2C', // Primary Deep Charcoal/Black
+          700: '#32393B',
+          600: '#414A4C',
+          500: '#535E61',
         },
         copper: {
-          50: '#FAF4EF',
-          100: '#F4E7DD',
-          200: '#E7CEBC',
-          300: '#DAB59A',
-          400: '#CE9C78',
-          500: '#C29369', // Aged Copper (Primary Accent)
-          600: '#A87A52',
-          700: '#8C623E',
-          800: '#714B2D',
-          900: '#56351E',
+          100: '#F2E5DC',
+          200: '#DEBAA3',
+          300: '#C69376',
+          400: '#B57E5D',
+          500: '#A66E4E', // Oxidized Copper (Accent)
+          600: '#8C5A3E',
+          700: '#724730',
         },
-        ivory: {
-          50: '#FCFAF7',
-          100: '#F9F6F0',
-          200: '#F4F0E8', // Warm Ivory (Primary Main Background)
-          300: '#EAE3D5',
-          400: '#DDD3C0',
+        stone: {
+          100: '#ECEBE7',
+          200: '#D8D6CE',
+          300: '#C2C0B5',
+          400: '#AAA99C', // Weathered Stone (Architectural Metadata)
+          500: '#8E8D7F',
+          600: '#737264',
         },
-        sage: {
-          100: '#E7ECEB',
-          200: '#CFDAD7',
-          300: '#B0C2BD',
-          400: '#8B9995', // Muted Sage (Architectural Secondary)
-          500: '#707E7A',
-          600: '#56635F',
-        },
-        graphite: {
-          100: '#A2AFB4',
-          200: '#7B8B91',
-          300: '#546369',
-          400: '#343F43', // Deep Graphite
-          500: '#232B2E',
-          600: '#161B1D',
+        chalk: {
+          DEFAULT: '#F8F7F3', // Chalk (High-contrast pure surface)
+          100: '#FFFFFF',
+          200: '#F8F7F3',
+          300: '#F0EFE9',
         }
       },
       fontFamily: {
-        sans: ['"Inter"', '"DM Sans"', 'system-ui', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', '"Manrope"', 'sans-serif'],
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-      },
-      boxShadow: {
-        'elevated': '0 20px 40px -15px rgba(23, 35, 40, 0.08), 0 0 1px 1px rgba(23, 35, 40, 0.04)',
-        'premium': '0 25px 50px -12px rgba(23, 35, 40, 0.15)',
-        'copper-glow': '0 0 25px rgba(194, 147, 105, 0.25)',
+        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+        sans: ['"Manrope"', 'system-ui', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'monospace'],
       },
       maxWidth: {
-        'site': '1320px',
+        'site': '1380px',
+      },
+      boxShadow: {
+        'editorial': '0 30px 60px -20px rgba(37, 43, 44, 0.08), 0 0 1px 1px rgba(37, 43, 44, 0.04)',
+        'fine': '0 10px 30px -10px rgba(37, 43, 44, 0.06)',
       }
     },
   },

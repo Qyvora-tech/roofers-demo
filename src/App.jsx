@@ -1,28 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Lenis from 'lenis';
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import HeroAssembly from './components/HeroAssembly';
-import TrustStrip from './components/TrustStrip';
-import Services from './components/Services';
-import RoofingAnatomy from './components/RoofingAnatomy';
-import CostCalculator from './components/CostCalculator';
-import ProjectGallery from './components/ProjectGallery';
-import WhyChooseUs from './components/WhyChooseUs';
-import ProcessTimeline from './components/ProcessTimeline';
-import FinancingWarranty from './components/FinancingWarranty';
-import ServiceAreas from './components/ServiceAreas';
-import Testimonials from './components/Testimonials';
-import FAQSection from './components/FAQSection';
-import LeadCaptureSection from './components/LeadCaptureSection';
+import SectionCraft from './components/SectionCraft';
+import SectionServices from './components/SectionServices';
+import SectionMaterials from './components/SectionMaterials';
+import SectionProjects from './components/SectionProjects';
+import SectionCompany from './components/SectionCompany';
+import SectionProcess from './components/SectionProcess';
+import SectionTrust from './components/SectionTrust';
+import SectionServiceAreas from './components/SectionServiceAreas';
+import SectionEstimate from './components/SectionEstimate';
 import Footer from './components/Footer';
 import EstimateModal from './components/EstimateModal';
 
 export default function App() {
   const [isEstimateModalOpen, setIsEstimateModalOpen] = useState(false);
-  const [initialModalService, setInitialModalService] = useState('');
+  const [initialService, setInitialService] = useState('');
   const [lenis, setLenis] = useState(null);
 
-  // Initialize Lenis Smooth Scrolling across the entire website
+  // Initialize Lenis Smooth Inertial Scrolling
   useEffect(() => {
     const lenisInstance = new Lenis({
       duration: 1.15,
@@ -69,8 +66,8 @@ export default function App() {
     };
   }, []);
 
-  const handleOpenEstimate = (service = 'Complete Roof Replacement') => {
-    setInitialModalService(typeof service === 'string' ? service : 'Complete Roof Replacement');
+  const handleOpenEstimate = (service = 'Roof Replacement (Full System)') => {
+    setInitialService(typeof service === 'string' ? service : 'Roof Replacement (Full System)');
     setIsEstimateModalOpen(true);
   };
 
@@ -79,62 +76,53 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-ivory-200 text-graphite-400 font-sans selection:bg-copper-500 selection:text-white">
-      {/* Navigation */}
-      <Navbar onOpenEstimate={handleOpenEstimate} />
+    <div className="min-h-screen bg-limestone-200 text-carbon-800 font-sans selection:bg-copper-500 selection:text-chalk">
+      {/* Editorial Header */}
+      <Header onOpenEstimate={handleOpenEstimate} />
 
-      {/* Signature Scroll-Driven Roof Assembly Hero with 60FPS Canvas Scrubbing */}
       <main>
+        {/* Signature Pinned Roof Assembly Experience (60FPS Canvas Scrubbing) */}
         <HeroAssembly 
           onOpenEstimate={handleOpenEstimate} 
           lenisInstance={lenis} 
         />
 
-        {/* Credibility & Trust Strip */}
-        <TrustStrip />
+        {/* Section 02 — Material & Craft ("Precision lives in the details.") */}
+        <SectionCraft />
 
-        {/* Roofing Services */}
-        <Services onOpenEstimate={handleOpenEstimate} />
+        {/* Section 03 — Services (Editorial spread: Dominant photo + text-led entries) */}
+        <SectionServices onOpenEstimate={handleOpenEstimate} />
 
-        {/* Interactive 7-Layer Roofing Anatomy */}
-        <RoofingAnatomy />
+        {/* Section 04 — Materials Exploration (Class 4 SBS, Standing Seam, Cedar, Slate) */}
+        <SectionMaterials onOpenEstimate={handleOpenEstimate} />
 
-        {/* Interactive Instant Cost & Financing Calculator */}
-        <CostCalculator onOpenEstimate={handleOpenEstimate} />
+        {/* Section 05 — Selected Projects (Architectural portfolio & split slider) */}
+        <SectionProjects onOpenEstimate={handleOpenEstimate} />
 
-        {/* Filterable Portfolio Gallery & Before/After */}
-        <ProjectGallery onOpenEstimate={handleOpenEstimate} />
+        {/* Section 06 — The Company (Working philosophy & artisan W2 standards) */}
+        <SectionCompany onOpenEstimate={handleOpenEstimate} />
 
-        {/* The Slate & Ridge Standard (4 Pillars) */}
-        <WhyChooseUs onOpenEstimate={handleOpenEstimate} />
+        {/* Section 07 — Installation Process (5-Stage timeline) */}
+        <SectionProcess onOpenEstimate={handleOpenEstimate} />
 
-        {/* 5-Step Homeowner Process Journey */}
-        <ProcessTimeline onOpenEstimate={handleOpenEstimate} />
+        {/* Section 08 — Trust & Verification (Credentials & verified reviews) */}
+        <SectionTrust />
 
-        {/* Warranties & Financing */}
-        <FinancingWarranty onOpenEstimate={handleOpenEstimate} />
+        {/* Section 09 — Service Areas (DFW regional jurisdictions & ZIP check) */}
+        <SectionServiceAreas onOpenEstimate={handleOpenEstimate} />
 
-        {/* DFW Metro Service Areas & ZIP Search */}
-        <ServiceAreas onOpenEstimate={handleOpenEstimate} />
-
-        {/* Homeowner Reviews & Testimonials */}
-        <Testimonials />
-
-        {/* Frequently Asked Questions */}
-        <FAQSection onOpenEstimate={handleOpenEstimate} />
-
-        {/* Lead Capture Estimate Form */}
-        <LeadCaptureSection />
+        {/* Section 10 — Estimate Experience (Refined intake form) */}
+        <SectionEstimate />
       </main>
 
-      {/* Comprehensive Footer */}
+      {/* Carbon Editorial Footer */}
       <Footer onOpenEstimate={handleOpenEstimate} />
 
       {/* Global Estimate Booking Modal */}
       <EstimateModal
         isOpen={isEstimateModalOpen}
         onClose={handleCloseEstimate}
-        initialService={initialModalService}
+        initialService={initialService}
       />
     </div>
   );

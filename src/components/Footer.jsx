@@ -1,15 +1,5 @@
 import React from 'react';
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Clock, 
-  ShieldCheck, 
-  Award, 
-  ArrowUp, 
-  Heart,
-  ExternalLink
-} from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, ArrowUp, ShieldCheck, Award } from 'lucide-react';
 
 export default function Footer({ onOpenEstimate }) {
   const scrollToTop = () => {
@@ -20,207 +10,169 @@ export default function Footer({ onOpenEstimate }) {
   };
 
   return (
-    <footer className="bg-slate-950 text-white border-t border-white/10 relative overflow-hidden">
-      {/* Decorative top accent line in Aged Copper */}
-      <div className="h-1 w-full bg-gradient-to-r from-copper-600 via-copper-400 to-copper-600" />
+    <footer className="bg-carbon-950 text-chalk border-t border-carbon-800 relative overflow-hidden">
+      {/* Top Hairline in Oxidized Copper */}
+      <div className="h-[2px] w-full bg-copper-500" />
 
-      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+      <div className="max-w-site mx-auto px-4 sm:px-8 pt-20 pb-12">
         
-        {/* Main 4-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-white/10">
-          
-          {/* Col 1: Brand Info (4 cols) */}
-          <div className="lg:col-span-4 space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-copper-500/20 to-copper-600/10 border border-copper-500/40 flex items-center justify-center">
-                <svg className="w-6 h-6 text-copper-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m2 13 10-9 10 9" />
-                  <path d="M5 10.3V21h14V10.3" />
-                  <path d="M9 21v-7h6v7" />
-                  <path d="M12 4v4" stroke="#FAF0E8" strokeWidth="1.5" />
-                </svg>
-              </div>
-              <div>
-                <div className="font-display font-extrabold text-xl tracking-tight text-white flex items-center gap-1.5">
-                  <span>SLATE</span>
-                  <span className="text-copper-400 font-serif italic text-lg">&</span>
-                  <span>RIDGE</span>
-                </div>
-                <p className="text-[10px] tracking-[0.25em] uppercase text-sage-300 font-medium font-sans">
-                  Roofing Co.
-                </p>
-              </div>
+        {/* Oversized Brand Display */}
+        <div className="pb-16 border-b border-carbon-800 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+          <div>
+            <span className="text-[11px] font-mono tracking-[0.25em] text-copper-400 uppercase block mb-3">
+              RIDGELINE ARCHITECTURAL ROOFING CO.
+            </span>
+            <div className="font-sans font-black text-5xl sm:text-7xl lg:text-8xl tracking-tight text-chalk uppercase leading-none">
+              RIDGELINE
             </div>
-
-            <p className="text-xs text-sage-200 leading-relaxed max-w-sm">
-              Architectural craftsmanship with dependable residential protection across North Texas. 50-year non-prorated warranties, master certified installers, and forensic storm restorations.
+            <p className="font-serif italic text-xl sm:text-2xl text-stone-400 mt-2">
+              Crafted Above. Built Beyond.
             </p>
-
-            <div className="space-y-2 pt-2 text-xs text-sage-300">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Texas Roofing License #48921</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-copper-400 shrink-0" />
-                <span>GAF Master Elite® Certified #ME-98214</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                <span>$2,000,000 General Liability & Workers' Comp</span>
-              </div>
-            </div>
           </div>
 
-          {/* Col 2: Roofing Services (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
-            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-white">
-              Roofing Solutions
-            </h4>
-            <ul className="space-y-2.5 text-xs text-sage-300">
+          <div className="text-right font-mono text-xs text-stone-400 space-y-1">
+            <div className="text-stone-300">HEADQUARTERS // NORTH TEXAS</div>
+            <div>32.7767° N, 96.7970° W — DALLAS, TX</div>
+            <div className="text-copper-400">TEXAS ROOFING LIC. #48921</div>
+          </div>
+        </div>
+
+        {/* 4-Zone Editorial Composition */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 py-16 border-b border-carbon-800 text-xs">
+          
+          {/* Zone 1: Scope & Services (4 cols) */}
+          <div className="lg:col-span-4 space-y-4">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-copper-400 block">
+              01 // SPECIALIZED DISCIPLINES
+            </span>
+            <ul className="space-y-2.5 font-sans text-stone-300">
               <li>
-                <a href="#services" className="hover:text-copper-400 transition-colors flex items-center justify-between">
-                  <span>Complete Roof Replacement</span>
-                  <span className="text-[10px] text-copper-500 font-mono">50-Yr</span>
+                <a href="#services" className="hover:text-copper-400 transition-colors">
+                  Architectural Roof Replacement (50-Yr Golden Pledge)
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-copper-400 transition-colors">
-                  Class 4 Impact Hail Resistant Shingles
+                  Class 4 Hail Impact Fortification (SBS Composite)
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-copper-400 transition-colors">
-                  Precision Leak & Flashing Repairs
+                  Standing Seam Architectural Metal Systems
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-copper-400 transition-colors">
-                  Forensic Storm & Wind Claim Advocacy
+                  Forensic Wind & Hail Insurance Restoration
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-copper-400 transition-colors">
-                  Free 4K Drone Aerial Roof Inspections
+                  High-Definition 4K Drone Aerial Roof Inspections
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-copper-400 transition-colors">
-                  Seamless Copper & Aluminum Gutters
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-copper-400 transition-colors">
-                  Continuous Ridge Attic Ventilation
+                  Continuous Seamless Aged Copper Gutters & Drainage
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Exploration & Resources (2 cols) */}
-          <div className="lg:col-span-2 space-y-4">
-            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-white">
-              Explore
-            </h4>
-            <ul className="space-y-2.5 text-xs text-sage-300">
+          {/* Zone 2: Exploration (3 cols) */}
+          <div className="lg:col-span-3 space-y-4">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-copper-400 block">
+              02 // DIRECTORY & ARCHIVE
+            </span>
+            <ul className="space-y-2.5 font-sans text-stone-300">
               <li>
-                <a href="#anatomy" className="hover:text-copper-400 transition-colors">
-                  Roof Anatomy
+                <a href="#craft" className="hover:text-copper-400 transition-colors">
+                  Anatomy of Craft
                 </a>
               </li>
               <li>
-                <a href="#calculator" className="hover:text-copper-400 transition-colors">
-                  Cost Estimator
+                <a href="#materials" className="hover:text-copper-400 transition-colors">
+                  Material Specifications
                 </a>
               </li>
               <li>
-                <a href="#gallery" className="hover:text-copper-400 transition-colors">
-                  Project Gallery
+                <a href="#portfolio" className="hover:text-copper-400 transition-colors">
+                  Selected Work (Before & After)
                 </a>
               </li>
               <li>
-                <a href="#why-us" className="hover:text-copper-400 transition-colors">
-                  The Difference
+                <a href="#philosophy" className="hover:text-copper-400 transition-colors">
+                  Working Philosophy
                 </a>
               </li>
               <li>
                 <a href="#process" className="hover:text-copper-400 transition-colors">
-                  5-Step Process
+                  The 5-Stage Process
                 </a>
               </li>
               <li>
                 <a href="#areas" className="hover:text-copper-400 transition-colors">
-                  Service Areas
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="hover:text-copper-400 transition-colors">
-                  Homeowner FAQs
+                  DFW Regional Jurisdictions
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Contact & Operations (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
-            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-white">
-              Direct Contact
-            </h4>
-            <div className="space-y-3 text-xs text-sage-300">
+          {/* Zone 3: Direct Studio Operations (5 cols) */}
+          <div className="lg:col-span-5 space-y-4 lg:pl-8">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-copper-400 block">
+              03 // DIRECT CONTACT & DISPATCH
+            </span>
+            <div className="space-y-3 font-sans text-stone-300">
               <a 
                 href="tel:2148337663" 
-                className="flex items-center gap-2.5 text-white hover:text-copper-400 transition-colors"
+                className="font-sans font-bold text-xl text-chalk hover:text-copper-400 transition-colors block"
               >
-                <Phone className="w-4 h-4 text-copper-400 shrink-0" />
-                <span className="font-semibold text-sm">(214) 833-7663</span>
+                (214) 833-7663
               </a>
-
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-copper-400 shrink-0" />
-                <span>estimates@slateandridge.com</span>
+              <div className="font-mono text-xs text-stone-400">
+                estimates@ridgelineroofing.com
               </div>
-
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-copper-400 shrink-0 mt-0.5" />
-                <span>8350 N Central Expy, Suite 700<br />Dallas, TX 75206</span>
+              <div className="font-sans text-xs text-stone-300">
+                8350 N Central Expressway, Suite 700<br />
+                Dallas, Texas 75206
               </div>
-
-              <div className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 text-copper-400 shrink-0 mt-0.5" />
-                <span>Mon – Sat: 7:00 AM – 7:00 PM<br /><span className="text-copper-300">24/7 Emergency Storm Dispatch</span></span>
+              <div className="font-mono text-[11px] text-stone-400 pt-2 border-t border-carbon-800">
+                OPERATING: MON – SAT 7:00 AM – 7:00 PM<br />
+                <span className="text-copper-400">24/7 ACTIVE STORM EMERGENCY TARPING</span>
               </div>
+            </div>
 
-              <div className="pt-2">
-                <button
-                  onClick={() => onOpenEstimate('Footer Contact')}
-                  className="w-full py-2.5 px-4 rounded-lg bg-copper-500 hover:bg-copper-400 text-slate-950 font-display font-bold text-xs transition-colors"
-                >
-                  Schedule Free Roof Audit
-                </button>
-              </div>
+            <div className="pt-2">
+              <button
+                onClick={() => onOpenEstimate('Footer Intake')}
+                className="w-full py-3 bg-copper-500 hover:bg-copper-400 text-carbon-950 font-sans font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+              >
+                Request Architectural Inspection
+              </button>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Disclosures & Copyright */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-sage-400">
+        {/* Regulatory Disclosures & Bottom Bar */}
+        <div className="pt-10 flex flex-col md:flex-row items-center justify-between gap-6 text-[11px] font-mono text-stone-500">
           <div className="space-y-1 text-center md:text-left">
             <div>
-              © {new Date().getFullYear()} Slate & Ridge Roofing Co. All rights reserved. Texas Lic. #48921.
+              © {new Date().getFullYear()} RIDGELINE ARCHITECTURAL ROOFING CO. ALL RIGHTS RESERVED.
             </div>
-            <div className="text-sage-500">
-              Demonstration brand site built to showcase modern American residential roofing digital excellence.
+            <div>
+              TEXAS LIC. #48921 • $2M COMMERCIAL LIABILITY & WORKERS' COMP.
             </div>
           </div>
 
           <div className="flex items-center gap-6">
-            <span className="hover:text-white transition-colors cursor-pointer">Privacy Policy</span>
-            <span className="hover:text-white transition-colors cursor-pointer">Terms of Service</span>
-            <span className="hover:text-white transition-colors cursor-pointer">Warranty Certificate</span>
+            <span className="hover:text-chalk transition-colors cursor-pointer">Warranty Certificate</span>
+            <span className="hover:text-chalk transition-colors cursor-pointer">Privacy Policy</span>
+            <span className="hover:text-chalk transition-colors cursor-pointer">Terms of Engagement</span>
             <button
               onClick={scrollToTop}
-              className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-sage-300 hover:text-white transition-colors"
+              className="w-8 h-8 border border-carbon-700 hover:border-copper-400 flex items-center justify-center text-stone-400 hover:text-chalk transition-colors cursor-pointer"
               title="Return to top"
             >
               <ArrowUp className="w-4 h-4" />
