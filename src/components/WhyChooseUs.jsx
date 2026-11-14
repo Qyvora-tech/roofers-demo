@@ -78,7 +78,7 @@ export default function WhyChooseUs({ onOpenEstimate }) {
             return (
               <div
                 key={pillar.num}
-                className="group p-8 sm:p-10 rounded-3xl bg-slate-950/80 border border-white/10 hover:border-copper-500/40 transition-all duration-300 shadow-xl flex flex-col justify-between"
+                className="group p-8 sm:p-10 rounded-3xl bg-slate-950/80 border border-white/10 hover:border-copper-500/40 hover:-translate-y-1.5 transition-all duration-300 shadow-xl flex flex-col justify-between"
               >
                 <div>
                   {/* Top Bar with Number & Icon */}

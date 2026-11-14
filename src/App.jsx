@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import HeroAssembly from './components/HeroAssembly';
 import TrustStrip from './components/TrustStrip';
@@ -19,6 +20,54 @@ import EstimateModal from './components/EstimateModal';
 export default function App() {
   const [isEstimateModalOpen, setIsEstimateModalOpen] = useState(false);
   const [initialModalService, setInitialModalService] = useState('');
+  const [lenis, setLenis] = useState(null);
+
+  // Initialize Lenis Smooth Scrolling across the entire website
+  useEffect(() => {
+    const lenisInstance = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.05,
+      touchMultiplier: 1.5,
+      infinite: false,
+    });
+
+    setLenis(lenisInstance);
+
+    let rafId;
+    function raf(time) {
+      lenisInstance.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+
+    rafId = requestAnimationFrame(raf);
+
+    // Smooth anchor navigation handler
+    const handleAnchorClick = (e) => {
+      const target = e.target.closest('a[href^="#"]');
+      if (target) {
+        const id = target.getAttribute('href');
+        if (id && id !== '#') {
+          const element = document.querySelector(id);
+          if (element) {
+            e.preventDefault();
+            lenisInstance.scrollTo(element, { offset: -60, duration: 1.2 });
+          }
+        }
+      }
+    };
+
+    document.addEventListener('click', handleAnchorClick);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      document.removeEventListener('click', handleAnchorClick);
+      lenisInstance.destroy();
+    };
+  }, []);
 
   const handleOpenEstimate = (service = 'Complete Roof Replacement') => {
     setInitialModalService(typeof service === 'string' ? service : 'Complete Roof Replacement');
@@ -34,9 +83,12 @@ export default function App() {
       {/* Navigation */}
       <Navbar onOpenEstimate={handleOpenEstimate} />
 
-      {/* Signature Scroll-Driven Roof Assembly Hero */}
+      {/* Signature Scroll-Driven Roof Assembly Hero with 60FPS Canvas Scrubbing */}
       <main>
-        <HeroAssembly onOpenEstimate={handleOpenEstimate} />
+        <HeroAssembly 
+          onOpenEstimate={handleOpenEstimate} 
+          lenisInstance={lenis} 
+        />
 
         {/* Credibility & Trust Strip */}
         <TrustStrip />

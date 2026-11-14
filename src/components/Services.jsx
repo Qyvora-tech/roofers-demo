@@ -146,7 +146,7 @@ export default function Services({ onOpenEstimate }) {
             return (
               <div
                 key={service.id}
-                className={`${service.bgSpan} group relative rounded-2xl bg-white border border-slate-900/5 shadow-elevated hover:shadow-premium transition-all duration-300 overflow-hidden flex flex-col justify-between`}
+                className={`${service.bgSpan} group relative rounded-2xl bg-white border border-slate-900/5 shadow-elevated hover:shadow-premium hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col justify-between`}
               >
                 {/* Visual Header Image Container */}
                 <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900">

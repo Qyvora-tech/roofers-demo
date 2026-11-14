@@ -156,7 +156,7 @@ export default function ProjectGallery({ onOpenEstimate }) {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group rounded-2xl bg-ivory-50 border border-slate-900/5 shadow-elevated hover:shadow-premium transition-all duration-300 overflow-hidden flex flex-col justify-between"
+              className="group rounded-2xl bg-ivory-50 border border-slate-900/5 shadow-elevated hover:shadow-premium hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col justify-between"
             >
               {/* Image Preview */}
               <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900">

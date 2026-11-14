@@ -8,6 +8,22 @@
     -webkit-tap-highlight-color: transparent;
   }
   
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
   body {
     background-color: #F4F0E8;
     color: #343F43;
@@ -56,4 +72,14 @@
 
 .subtle-border-dark {
   border-color: rgba(244, 240, 232, 0.1);
+}
+
+/* Smooth reveal animations */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4s ease-in-out infinite;
 }
