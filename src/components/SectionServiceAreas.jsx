@@ -41,22 +41,25 @@ export default function SectionServiceAreas({ onOpenEstimate }) {
   };
 
   return (
-    <section id="areas" className="py-24 sm:py-32 bg-chalk text-carbon-800 border-t border-hairline">
-      <div className="max-w-site mx-auto px-4 sm:px-8">
+    <section id="areas" className="py-24 sm:py-32 bg-carbon-900 text-chalk border-t border-white/5 relative overflow-hidden">
+      {/* Background ambient glow */}
+      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-copper-500/5 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="max-w-site mx-auto px-4 sm:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-hairline">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-white/10">
           <div>
-            <span className="text-[11px] font-mono tracking-[0.25em] text-copper-500 uppercase block mb-3">
+            <span className="text-[11px] font-mono tracking-[0.25em] text-copper-400 uppercase block mb-3 font-bold">
               SECTION 09 // REGIONAL JURISDICTION
             </span>
-            <h2 className="font-serif italic font-normal text-4xl sm:text-6xl text-carbon-900 leading-tight">
+            <h2 className="font-serif italic font-normal text-4xl sm:text-6xl text-copper-200 leading-tight">
               Dallas-Fort Worth <br />
-              <span className="font-sans font-black not-italic text-carbon-900">regional coverage.</span>
+              <span className="font-sans font-black not-italic text-white">regional coverage.</span>
             </h2>
           </div>
           <div className="max-w-md">
-            <p className="text-xs sm:text-sm text-carbon-600 font-sans leading-relaxed">
+            <p className="text-xs sm:text-sm text-stone-300 font-sans leading-relaxed">
               Our certified inspection teams are permanently stationed throughout North Texas to deliver rapid emergency response and scheduled on-site audits.
             </p>
           </div>
@@ -64,10 +67,10 @@ export default function SectionServiceAreas({ onOpenEstimate }) {
 
         {/* Interactive ZIP Code Verification Bar */}
         <div className="max-w-2xl mx-auto mb-16">
-          <div className="p-4 sm:p-5 bg-limestone-200 border border-hairline shadow-fine">
+          <div className="p-4 sm:p-6 bg-carbon-950/90 border border-white/10 shadow-obsidian-lg backdrop-blur-md">
             <form onSubmit={handleZipCheck} className="flex flex-col sm:flex-row items-center gap-3">
               <div className="relative flex-1 w-full">
-                <Search className="w-4 h-4 text-copper-500 absolute left-4 top-1/2 -translate-y-1/2" />
+                <Search className="w-4 h-4 text-copper-400 absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   placeholder="Enter your 5-digit ZIP code (e.g. 75205, 75024)"
@@ -76,33 +79,33 @@ export default function SectionServiceAreas({ onOpenEstimate }) {
                     setZipInput(e.target.value);
                     if (zipResult) setZipResult(null);
                   }}
-                  className="w-full pl-11 pr-4 py-3 bg-chalk border border-hairline text-xs font-mono text-carbon-900 focus:outline-none focus:border-copper-500 placeholder:text-stone-400"
+                  className="w-full pl-11 pr-4 py-3 bg-carbon-900 border border-white/10 text-xs font-mono text-white focus:outline-none focus:border-copper-400 placeholder:text-stone-500 transition-colors"
                   maxLength={5}
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full sm:w-auto px-6 py-3 bg-carbon-900 hover:bg-copper-500 hover:text-carbon-950 text-chalk text-xs font-mono uppercase tracking-wider transition-colors shrink-0 cursor-pointer"
+                className="w-full sm:w-auto px-6 py-3 bg-copper-500 hover:bg-copper-400 text-carbon-950 text-xs font-mono font-bold uppercase tracking-wider transition-all shrink-0 cursor-pointer shadow-lg active:scale-95"
               >
                 Verify Dispatch
               </button>
             </form>
 
             {zipResult && (
-              <div className="mt-4 p-4 bg-chalk border border-copper-500/40 text-xs animate-in fade-in duration-200 space-y-2">
-                <div className="flex items-center gap-2 font-mono font-bold text-copper-600">
-                  <CheckCircle2 className="w-4 h-4 text-copper-500" />
+              <div className="mt-4 p-4 bg-carbon-900 border border-copper-400/50 text-xs animate-in fade-in duration-200 space-y-2">
+                <div className="flex items-center gap-2 font-mono font-bold text-copper-300">
+                  <CheckCircle2 className="w-4 h-4 text-copper-400" />
                   <span>{zipResult.message}</span>
                 </div>
-                <p className="text-carbon-700 font-sans">
+                <p className="text-stone-300 font-sans">
                   {zipResult.detail}
                 </p>
-                <div className="pt-2 border-t border-hairline flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-stone-500">Fast 45-minute on-site assessment</span>
+                <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-[10px] font-mono text-stone-400">Fast 45-minute on-site assessment</span>
                   <button
                     onClick={() => onOpenEstimate(`Service for ZIP ${zipInput}`)}
-                    className="font-mono text-xs font-bold text-carbon-900 hover:text-copper-600 underline cursor-pointer"
+                    className="font-mono text-xs font-bold text-copper-400 hover:text-copper-300 underline cursor-pointer"
                   >
                     Schedule ZIP {zipInput} Inspection →
                   </button>
@@ -117,36 +120,36 @@ export default function SectionServiceAreas({ onOpenEstimate }) {
           {territories.map((t, idx) => (
             <div
               key={idx}
-              className="p-6 sm:p-8 bg-limestone-100 border border-hairline flex flex-col justify-between space-y-6 shadow-fine"
+              className="p-6 sm:p-8 bg-carbon-950/90 border border-white/10 flex flex-col justify-between space-y-6 shadow-obsidian-lg hover:border-copper-500/40 transition-colors"
             >
               <div>
-                <div className="flex items-center justify-between text-[10px] font-mono text-stone-500 mb-3">
+                <div className="flex items-center justify-between text-[10px] font-mono text-stone-400 mb-3">
                   <span>{t.coords}</span>
-                  <span className="text-copper-500 font-bold">{t.turnaround}</span>
+                  <span className="text-copper-400 font-bold">{t.turnaround}</span>
                 </div>
 
-                <h3 className="font-sans font-bold text-xl text-carbon-900 mb-2">
+                <h3 className="font-sans font-bold text-xl text-white mb-2">
                   {t.region}
                 </h3>
 
-                <p className="text-xs text-carbon-700 font-sans mb-4">
+                <p className="text-xs text-stone-300 font-sans mb-4">
                   {t.cities}
                 </p>
 
-                <div className="p-3 bg-chalk border border-hairline text-[11px] font-mono text-carbon-700">
-                  <span className="text-copper-500 block uppercase font-bold text-[9px] mb-0.5">Primary Specialization:</span>
+                <div className="p-3 bg-carbon-900 border border-white/10 text-[11px] font-mono text-stone-200">
+                  <span className="text-copper-400 block uppercase font-bold text-[9px] mb-0.5">Primary Specialization:</span>
                   {t.focus}
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-hairline flex items-center justify-between">
-                <span className="text-[10px] font-mono text-stone-500">Crews Dispatched Daily</span>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-stone-400">Crews Dispatched Daily</span>
                 <button
                   onClick={() => onOpenEstimate(`Territory: ${t.region}`)}
-                  className="text-xs font-mono font-bold text-carbon-900 hover:text-copper-600 flex items-center gap-1 transition-colors cursor-pointer"
+                  className="text-xs font-mono font-bold text-copper-400 hover:text-copper-300 flex items-center gap-1 transition-colors cursor-pointer"
                 >
                   <span>Request Crew</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-copper-500" />
+                  <ArrowRight className="w-3.5 h-3.5 text-copper-400" />
                 </button>
               </div>
             </div>

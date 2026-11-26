@@ -16,21 +16,24 @@ export default {
           500: '#BFB6A4',
         },
         carbon: {
-          950: '#141718',
-          900: '#1C2122',
-          800: '#252B2C', // Primary Deep Charcoal/Black
-          700: '#32393B',
-          600: '#414A4C',
+          950: '#0B0E0F', // Obsidian Black
+          900: '#121617', // Deep Slate Obsidian
+          850: '#181D1F', // Elevated Dark Surface
+          800: '#202628', // Primary Charcoal
+          700: '#2D3538',
+          600: '#3E494D',
           500: '#535E61',
         },
         copper: {
-          100: '#F2E5DC',
-          200: '#DEBAA3',
-          300: '#C69376',
-          400: '#B57E5D',
-          500: '#A66E4E', // Oxidized Copper (Accent)
-          600: '#8C5A3E',
-          700: '#724730',
+          50: '#FBF5F1',
+          100: '#F4E8DF',
+          200: '#E5C5B0',
+          300: '#D5A282',
+          400: '#C88256', // Radiant Copper
+          500: '#B86B3D', // Oxidized Copper
+          600: '#9E552D',
+          700: '#7F401E',
+          glow: '#D97736',
         },
         stone: {
           100: '#ECEBE7',
@@ -58,6 +61,23 @@ export default {
       boxShadow: {
         'editorial': '0 30px 60px -20px rgba(37, 43, 44, 0.08), 0 0 1px 1px rgba(37, 43, 44, 0.04)',
         'fine': '0 10px 30px -10px rgba(37, 43, 44, 0.06)',
+        'copper-glow': '0 0 35px -5px rgba(184, 107, 61, 0.45)',
+        'obsidian-lg': '0 25px 60px -15px rgba(0, 0, 0, 0.85)',
+      },
+      animation: {
+        'marquee': 'marquee 35s linear infinite',
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'scan': 'scan 4s ease-in-out infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        scan: {
+          '0%, 100%': { top: '0%' },
+          '50%': { top: '100%' },
+        }
       }
     },
   },

@@ -48,15 +48,15 @@ export default function SectionMaterials({ onOpenEstimate }) {
         { label: 'Treatment Option', value: 'Pressure-impregnated Class A Fire Retardant' },
         { label: 'Thermal Resistance', value: 'R-1.15 per inch natural insulating value' },
         { label: 'Environmental', value: '100% Biodegradable & carbon-negative harvest' },
-        { label: 'Expected Lifespan', value: '30–45 Years when properly ventilated' }
+        { label: 'Expected Lifespan', value: '30–45 Years with seasonal conditioning' }
       ]
     },
     {
       code: 'MAT. 04',
-      name: 'Engineered Synthetic Slate Composite',
-      brand: 'DaVinci Multi-Width Slate Composite',
-      idealFor: 'Luxury Estates Requiring Slate Aesthetics Without Weight',
-      image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1000&q=85',
+      name: 'Engineered Synthetic Composite Slate',
+      brand: 'DaVinci Multi-Width Slate / Brava Composite',
+      idealFor: 'Luxury Estates Desiring Authentic Slate Aesthetics Without Structural Rafter Fortification',
+      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85',
       summary: 'Molded from authentic natural slate tiles using virgin resins and state-of-the-art UV stabilizers. Delivers the authentic stone appearance at 1/3 the structural dead-load weight.',
       specs: [
         { label: 'Composition', value: 'Engineered virgin polymer composite' },
@@ -71,8 +71,11 @@ export default function SectionMaterials({ onOpenEstimate }) {
   const current = materials[selectedMaterialIndex];
 
   return (
-    <section id="materials" className="py-24 sm:py-32 bg-limestone-200 text-carbon-800 border-t border-hairline">
-      <div className="max-w-site mx-auto px-4 sm:px-8">
+    <section id="materials" className="py-24 sm:py-32 bg-carbon-950 text-chalk border-t border-white/5 relative overflow-hidden">
+      {/* Subtle background ambient glow */}
+      <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-copper-500/5 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="max-w-site mx-auto px-4 sm:px-8 relative z-10">
         
         {/* Section Header */}
         <motion.div 
@@ -80,26 +83,26 @@ export default function SectionMaterials({ onOpenEstimate }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-hairline"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-white/10"
         >
           <div>
-            <span className="text-[11px] font-mono tracking-[0.25em] text-copper-500 uppercase block mb-3">
-              SECTION 04 // MATERIAL SELECTION
+            <span className="text-[11px] font-mono tracking-[0.25em] text-copper-400 uppercase block mb-3 font-bold">
+              SECTION 04 // MATERIAL SPECIFICATION
             </span>
-            <h2 className="font-serif italic font-normal text-4xl sm:text-6xl text-carbon-900 leading-tight">
+            <h2 className="font-serif italic font-normal text-4xl sm:text-6xl text-copper-200 leading-tight">
               Materials engineered <br />
-              <span className="font-sans font-black not-italic text-carbon-900">for climate endurance.</span>
+              <span className="font-sans font-black not-italic text-white">for climate endurance.</span>
             </h2>
           </div>
           <div className="max-w-md">
-            <p className="text-xs sm:text-sm text-carbon-600 font-sans leading-relaxed">
+            <p className="text-xs sm:text-sm text-stone-300 font-sans leading-relaxed">
               We exclusively install architectural-grade materials with verified manufacturer testing. No commodity 3-tab shortcuts or untested imports.
             </p>
           </div>
         </motion.div>
 
         {/* Material Selection Tabs */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
           {materials.map((mat, idx) => {
             const isSelected = selectedMaterialIndex === idx;
             return (
@@ -108,12 +111,12 @@ export default function SectionMaterials({ onOpenEstimate }) {
                 onClick={() => setSelectedMaterialIndex(idx)}
                 className={`p-4 text-left border transition-all duration-200 cursor-pointer ${
                   isSelected
-                    ? 'bg-carbon-900 text-chalk border-carbon-900 shadow-fine'
-                    : 'bg-chalk text-carbon-800 border-hairline hover:border-stone-400 hover:bg-limestone-50'
+                    ? 'bg-copper-500 text-carbon-950 border-copper-400 shadow-copper-glow font-bold'
+                    : 'bg-carbon-900/80 text-stone-300 border-white/10 hover:border-copper-500/50 hover:bg-carbon-850'
                 }`}
               >
                 <span className={`text-[10px] font-mono uppercase tracking-widest block mb-1 ${
-                  isSelected ? 'text-copper-400 font-bold' : 'text-stone-500'
+                  isSelected ? 'text-carbon-950 font-black' : 'text-copper-400'
                 }`}>
                   {mat.code}
                 </span>
@@ -126,7 +129,7 @@ export default function SectionMaterials({ onOpenEstimate }) {
         </div>
 
         {/* Selected Material Exploration Spread with Smooth Transitions */}
-        <div className="bg-chalk border border-hairline shadow-editorial overflow-hidden">
+        <div className="bg-carbon-900/90 border border-white/10 shadow-obsidian-lg overflow-hidden backdrop-blur-md">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.code}
@@ -144,15 +147,15 @@ export default function SectionMaterials({ onOpenEstimate }) {
                   initial={{ scale: 1.04 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-full h-full object-cover filter contrast-[1.04] brightness-95"
+                  className="w-full h-full object-cover filter contrast-[1.08] brightness-[0.88]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-carbon-950/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-carbon-950 via-carbon-950/20 to-transparent pointer-events-none" />
                 
                 <div className="absolute bottom-6 left-6 right-6 text-chalk">
-                  <span className="text-[10px] font-mono text-copper-400 uppercase tracking-widest block mb-1">
+                  <span className="text-[10px] font-mono text-copper-400 uppercase tracking-widest block mb-1 font-bold">
                     GENUINE INSTALLATION SPEC
                   </span>
-                  <div className="font-sans font-bold text-lg leading-tight">
+                  <div className="font-sans font-bold text-lg leading-tight text-white">
                     {current.brand}
                   </div>
                 </div>
@@ -161,47 +164,47 @@ export default function SectionMaterials({ onOpenEstimate }) {
               {/* Detailed Verification Matrix (7 cols) */}
               <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between space-y-6">
                 <div>
-                  <div className="flex items-center justify-between pb-3 border-b border-hairline mb-4">
-                    <span className="text-[10px] font-mono text-copper-500 uppercase tracking-widest">
+                  <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+                    <span className="text-[10px] font-mono text-copper-400 uppercase tracking-widest font-bold">
                       {current.code} // MATERIAL BRIEF
                     </span>
-                    <span className="text-[11px] font-mono text-stone-500">
+                    <span className="text-[11px] font-mono text-stone-400">
                       {current.idealFor}
                     </span>
                   </div>
 
-                  <h3 className="font-sans font-bold text-2xl sm:text-3xl text-carbon-900 mb-3">
+                  <h3 className="font-sans font-bold text-2xl sm:text-3xl text-white mb-3">
                     {current.name}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-carbon-700 font-sans leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-stone-300 font-sans leading-relaxed mb-6">
                     {current.summary}
                   </p>
 
                   {/* Technical Specifications Matrix */}
-                  <div className="space-y-2.5 pt-2 border-t border-hairline">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-stone-500 block mb-2">
+                  <div className="space-y-2.5 pt-2 border-t border-white/10">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-copper-400 font-bold block mb-2">
                       VERIFIED TECHNICAL ATTRIBUTES
                     </span>
                     {current.specs.map((item, idx) => (
-                      <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between py-1.5 border-b border-hairline text-xs gap-1">
-                        <span className="font-mono text-stone-500 text-[11px]">{item.label}</span>
-                        <span className="font-sans font-semibold text-carbon-900">{item.value}</span>
+                      <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between py-2 border-b border-white/5 text-xs gap-1">
+                        <span className="font-mono text-stone-400 text-[11px]">{item.label}</span>
+                        <span className="font-sans font-semibold text-stone-100">{item.value}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-4 flex items-center justify-between">
-                  <span className="text-xs font-mono text-stone-500">
+                <div className="pt-4 flex items-center justify-between border-t border-white/10">
+                  <span className="text-xs font-mono text-stone-400">
                     WANT PHYSICAL MATERIAL SAMPLES?
                   </span>
                   <button
                     onClick={() => onOpenEstimate(`Sample Kit Request: ${current.name}`)}
-                    className="px-5 py-2.5 bg-copper-500 hover:bg-copper-400 text-carbon-950 font-sans font-bold text-xs uppercase tracking-wider transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm active:scale-95"
+                    className="px-6 py-3 bg-copper-500 hover:bg-copper-400 text-carbon-950 font-sans font-bold text-xs uppercase tracking-wider transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-lg active:scale-95"
                   >
                     <span>Request Sample Kit</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5 text-carbon-950" />
                   </button>
                 </div>
 

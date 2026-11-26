@@ -15,20 +15,40 @@ export default function Header({ onOpenEstimate }) {
 
   const navLinks = [
     { label: 'Craft', num: '01', href: '#craft' },
-    { label: 'Services', num: '02', href: '#services' },
-    { label: 'Materials', num: '03', href: '#materials' },
-    { label: 'Selected Work', num: '04', href: '#portfolio' },
-    { label: 'Process', num: '05', href: '#process' },
-    { label: 'Philosophy', num: '06', href: '#philosophy' },
+    { label: 'Storm Radar', num: '02', href: '#radar' },
+    { label: 'ROI Calculator', num: '03', href: '#calculator' },
+    { label: 'Materials', num: '04', href: '#materials' },
+    { label: 'Portfolio', num: '05', href: '#portfolio' },
+    { label: 'Process', num: '06', href: '#process' },
   ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      {/* Top Telemetry & Accreditation Ribbon */}
+      <div className={`transition-all duration-300 border-b border-white/5 bg-carbon-950/90 backdrop-blur-md py-1.5 px-4 sm:px-8 text-[10px] font-mono flex items-center justify-between text-stone-400 ${
+        isScrolled ? 'hidden' : 'flex'
+      }`}>
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-stone-300">DFW DISPATCH // 04 ACTIVE CREWS TODAY</span>
+          <span className="text-stone-600 hidden md:inline">•</span>
+          <span className="hidden md:inline text-copper-400">GAF MASTER ELITE® #ME-98214 (TOP 1% USA)</span>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <span className="hidden sm:inline text-stone-400">TEXAS LIC. #48921</span>
+          <a href="tel:2148337663" className="text-copper-400 hover:text-copper-300 font-bold flex items-center gap-1">
+            <Phone className="w-2.5 h-2.5" />
+            <span>(214) 833-7663</span>
+          </a>
+        </div>
+      </div>
+
       {/* Unified Bespoke Editorial Navigation Bar */}
       <nav className={`transition-all duration-300 ${
         isScrolled
-          ? 'bg-carbon-950/95 backdrop-blur-md border-b border-white/10 py-3.5 shadow-xl'
-          : 'bg-gradient-to-b from-carbon-950/90 via-carbon-950/40 to-transparent py-4 sm:py-5'
+          ? 'bg-carbon-950/95 backdrop-blur-md border-b border-white/10 py-3 shadow-obsidian-lg'
+          : 'bg-gradient-to-b from-carbon-950/90 via-carbon-950/40 to-transparent py-3.5 sm:py-4'
       }`}>
         <div className="max-w-site mx-auto px-6 sm:px-12 flex items-center justify-between">
           

@@ -401,55 +401,134 @@ export default function HeroAssembly({ onOpenEstimate, lenisInstance }) {
         {/* Top Spacer to clear header */}
         <div className="relative z-20 pt-28 sm:pt-32" />
 
-        {/* Center Editorial Storytelling Overlay: High-Contrast & Prominent */}
-        <div className="relative z-20 max-w-site mx-auto px-6 sm:px-12 w-full my-auto pointer-events-none min-h-[380px] flex items-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentPhase}
-              initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -18, filter: 'blur(6px)' }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-2xl w-full"
-            >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-carbon-900/90 border border-copper-400 text-[11px] font-mono tracking-[0.25em] text-copper-300 font-bold uppercase mb-4 shadow-lg backdrop-blur-md">
-                <span>{phases[currentPhase].badge}</span>
+        {/* Center Editorial Storytelling Overlay + HUD Telemetry */}
+        <div className="relative z-20 max-w-site mx-auto px-4 sm:px-8 lg:px-12 w-full my-auto flex flex-col lg:flex-row lg:items-center justify-between gap-8 pointer-events-none">
+          
+          {/* Main Phase Typography Column */}
+          <div className="max-w-2xl w-full min-h-[380px] flex items-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentPhase}
+                initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, y: -18, filter: 'blur(6px)' }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full"
+              >
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-carbon-900/90 border border-copper-400 text-[11px] font-mono tracking-[0.25em] text-copper-300 font-bold uppercase mb-4 shadow-copper-glow backdrop-blur-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-copper-400 animate-ping" />
+                  <span>{phases[currentPhase].badge}</span>
+                </div>
+
+                <h1 className="font-sans font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight leading-[1.04] mb-3 drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)]">
+                  {phases[currentPhase].headline}
+                </h1>
+
+                {phases[currentPhase].subhead && (
+                  <p className="font-serif italic text-2xl sm:text-4xl text-copper-200 mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+                    {phases[currentPhase].subhead}
+                  </p>
+                )}
+
+                <p className="text-sm sm:text-base text-stone-200 leading-relaxed max-w-lg mb-8 font-sans drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                  {phases[currentPhase].description}
+                </p>
+
+                {phases[currentPhase].content}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Right Floating Architectural HUD & Interactive Milestone Dock */}
+          <div className="hidden lg:flex flex-col gap-3 w-80 pointer-events-auto">
+            
+            {/* Top Telemetry Capsule */}
+            <div className="p-4 bg-carbon-950/90 border border-carbon-800 backdrop-blur-xl shadow-obsidian-lg">
+              <div className="flex items-center justify-between text-[10px] font-mono pb-2 border-b border-carbon-800 text-stone-400">
+                <span className="text-copper-400 font-bold">ASSEMBLY TELEMETRY</span>
+                <span>STAGE 0{currentPhase + 1} / 05</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2 pt-2.5 text-[10px] font-mono">
+                <div>
+                  <span className="text-stone-500 block">WIND SCHEDULE</span>
+                  <span className="text-white font-bold">130 MPH DFR</span>
+                </div>
+                <div>
+                  <span className="text-stone-500 block">HAIL CLASSIFICATION</span>
+                  <span className="text-copper-300 font-bold">UL 2218 CLASS 4</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Milestone Dock */}
+            <div className="p-3 bg-carbon-950/95 border border-copper-500/40 backdrop-blur-xl shadow-copper-glow space-y-1.5">
+              <div className="flex items-center justify-between px-2 pb-1.5 text-[10px] font-mono text-stone-400">
+                <span>INTERACTIVE LAYERS</span>
+                <button
+                  onClick={toggleAutoPlay}
+                  className="text-copper-400 hover:text-copper-300 flex items-center gap-1 cursor-pointer font-bold"
+                >
+                  {isPlayingAuto ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+                  <span>{isPlayingAuto ? 'PAUSE' : 'AUTO-PLAY'}</span>
+                </button>
               </div>
 
-              <h1 className="font-sans font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight leading-[1.06] mb-3 drop-shadow-[0_4px_20px_rgba(0,0,0,0.85)]">
-                {phases[currentPhase].headline}
-              </h1>
+              {[
+                { label: 'Substrate CDX Decking', pct: 0.05, code: '01' },
+                { label: 'Underlayment & Ice Shield', pct: 0.25, code: '02' },
+                { label: 'Class 4 Shingle Matrix', pct: 0.55, code: '03' },
+                { label: 'Flashing & Ridge Exhaust', pct: 0.80, code: '04' },
+                { label: 'Completed 50-Yr System', pct: 0.98, code: '05' },
+              ].map((step, idx) => {
+                const isActive = currentPhase === idx;
+                return (
+                  <button
+                    key={step.code}
+                    onClick={() => seekToStage(step.pct)}
+                    className={`w-full px-3 py-2 text-left text-xs font-mono transition-all flex items-center justify-between cursor-pointer border ${
+                      isActive 
+                        ? 'bg-copper-500 text-carbon-950 border-copper-400 font-bold shadow-md'
+                        : 'bg-carbon-900/80 text-stone-300 border-carbon-800 hover:border-copper-500/50 hover:bg-carbon-850'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-carbon-950' : 'bg-copper-400'}`} />
+                      <span className="font-bold">{step.code}</span>
+                      <span className="font-sans truncate text-[11px]">{step.label}</span>
+                    </div>
+                    <span className="text-[10px] opacity-75">{Math.round(step.pct * 100)}%</span>
+                  </button>
+                );
+              })}
+            </div>
 
-              {phases[currentPhase].subhead && (
-                <p className="font-serif italic text-2xl sm:text-4xl text-copper-200 mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                  {phases[currentPhase].subhead}
-                </p>
-              )}
+            {/* Quick Action to Calculator */}
+            <a
+              href="#calculator"
+              className="p-3 bg-carbon-900/90 hover:bg-carbon-850 border border-carbon-800 text-center text-xs font-mono uppercase tracking-wider text-stone-300 hover:text-copper-400 transition-colors block"
+            >
+              <span>Instant ROI & Cost Estimator ↓</span>
+            </a>
 
-              <p className="text-sm sm:text-base text-stone-100 leading-relaxed max-w-lg mb-8 font-sans drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                {phases[currentPhase].description}
-              </p>
+          </div>
 
-              {phases[currentPhase].content}
-            </motion.div>
-          </AnimatePresence>
         </div>
 
         {/* Discreet Minimalist Scroll Indicator with Hairline Progress Track */}
-        <div className="relative z-20 pb-6 px-6 sm:px-12 max-w-site mx-auto w-full pointer-events-none">
+        <div className="relative z-20 pb-4 px-4 sm:px-8 lg:px-12 max-w-site mx-auto w-full pointer-events-none">
           <div className="w-full h-0.5 bg-white/10 mb-3 overflow-hidden rounded-full">
             <div 
               className="h-full bg-gradient-to-r from-copper-500 via-copper-400 to-amber-200 transition-all duration-150"
               style={{ width: `${Math.round(scrollProgress * 100)}%` }}
             />
           </div>
-          <div className="flex items-center justify-between text-[10px] font-mono text-stone-400/80">
+          <div className="flex items-center justify-between text-[10px] font-mono text-stone-400">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-copper-400 animate-pulse"></span>
-              <span className="tracking-widest">SCROLL TO ASSEMBLE ROOF</span>
+              <span className="tracking-widest">SCROLL TO INSPECT ASSEMBLY // FORENSIC ROOF SEQUENCE</span>
             </div>
             <div className="tracking-widest font-bold text-copper-300">
-              {Math.round(scrollProgress * 100)}%
+              ASSEMBLY PROGRESS: {Math.round(scrollProgress * 100)}%
             </div>
           </div>
         </div>

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import Header from './components/Header';
 import HeroAssembly from './components/HeroAssembly';
+import SectionRadar from './components/SectionRadar';
 import SectionCraft from './components/SectionCraft';
+import SectionCalculator from './components/SectionCalculator';
 import SectionServices from './components/SectionServices';
 import SectionMaterials from './components/SectionMaterials';
 import SectionProjects from './components/SectionProjects';
@@ -13,6 +15,7 @@ import SectionServiceAreas from './components/SectionServiceAreas';
 import SectionEstimate from './components/SectionEstimate';
 import Footer from './components/Footer';
 import EstimateModal from './components/EstimateModal';
+import FloatingEmergencyBar from './components/FloatingEmergencyBar';
 
 export default function App() {
   const [isEstimateModalOpen, setIsEstimateModalOpen] = useState(false);
@@ -76,7 +79,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-limestone-200 text-carbon-800 font-sans selection:bg-copper-500 selection:text-chalk">
+    <div className="min-h-screen bg-carbon-950 text-chalk font-sans selection:bg-copper-500 selection:text-carbon-950">
       {/* Editorial Header */}
       <Header onOpenEstimate={handleOpenEstimate} />
 
@@ -87,8 +90,51 @@ export default function App() {
           lenisInstance={lenis} 
         />
 
-        {/* Section 02 — Material & Craft ("Precision lives in the details.") */}
+        {/* Lethal Authority Marquee Ribbon */}
+        <div className="bg-copper-500 text-carbon-950 py-3.5 overflow-hidden select-none border-y border-copper-400 font-mono text-[11px] uppercase tracking-widest font-black shadow-lg">
+          <div className="flex w-max animate-marquee gap-8">
+            <span>★ GAF MASTER ELITE® CONTRACTOR — TOP 1% IN NORTH AMERICA</span>
+            <span>•</span>
+            <span>50-YEAR GOLDEN PLEDGE® NON-PRORATED WARRANTY</span>
+            <span>•</span>
+            <span>OVER $48,000,000 IN STORM DAMAGE VALUATIONS RESTORED</span>
+            <span>•</span>
+            <span>UL 2218 CLASS 4 IMPACT RESISTANT MODIFIED ASPHALT</span>
+            <span>•</span>
+            <span>130 MPH HURRICANE WIND MECHANICAL FASTENING</span>
+            <span>•</span>
+            <span>$0 DOWN PROMOTIONAL FINANCING AVAILABLE</span>
+            <span>•</span>
+            <span>80+ DIGITAL PHOTO FORENSIC AUDITS</span>
+            <span>•</span>
+            <span>SERVING HIGHLAND PARK • SOUTHLAKE • FRISCO • PLANO • DFW METRO</span>
+            <span>•</span>
+            <span>★ GAF MASTER ELITE® CONTRACTOR — TOP 1% IN NORTH AMERICA</span>
+            <span>•</span>
+            <span>50-YEAR GOLDEN PLEDGE® NON-PRORATED WARRANTY</span>
+            <span>•</span>
+            <span>OVER $48,000,000 IN STORM DAMAGE VALUATIONS RESTORED</span>
+            <span>•</span>
+            <span>UL 2218 CLASS 4 IMPACT RESISTANT MODIFIED ASPHALT</span>
+            <span>•</span>
+            <span>130 MPH HURRICANE WIND MECHANICAL FASTENING</span>
+            <span>•</span>
+            <span>$0 DOWN PROMOTIONAL FINANCING AVAILABLE</span>
+            <span>•</span>
+            <span>80+ DIGITAL PHOTO FORENSIC AUDITS</span>
+            <span>•</span>
+            <span>SERVING HIGHLAND PARK • SOUTHLAKE • FRISCO • PLANO • DFW METRO</span>
+          </div>
+        </div>
+
+        {/* NEW WEAPON 1: Interactive Doppler Hail & Storm Damage Radar Scanner */}
+        <SectionRadar onOpenEstimate={handleOpenEstimate} />
+
+        {/* Section 02 — Material & Craft ("Precision lives in the details.") with X-Ray Blueprint Mode */}
         <SectionCraft />
+
+        {/* NEW WEAPON 2: Interactive Turnkey Roof Cost, Financing & ROI Estimator */}
+        <SectionCalculator onOpenEstimate={handleOpenEstimate} />
 
         {/* Section 03 — Services (Editorial spread: Dominant photo + text-led entries) */}
         <SectionServices onOpenEstimate={handleOpenEstimate} />
@@ -117,6 +163,9 @@ export default function App() {
 
       {/* Carbon Editorial Footer */}
       <Footer onOpenEstimate={handleOpenEstimate} />
+
+      {/* Floating Emergency Dispatch & Quick Estimate Bar */}
+      <FloatingEmergencyBar onOpenEstimate={handleOpenEstimate} />
 
       {/* Global Estimate Booking Modal */}
       <EstimateModal
